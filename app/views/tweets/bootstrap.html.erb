@@ -1,0 +1,55 @@
+<h1>GeekTwitter(BootStrap ver)</h1>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    投稿を作成する
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+                        <%= f.label :title %><br>
+                        <%= f.text_field :title,size:50 %><br>
+                        <%= f.label :投稿内容 %><br>
+                        <%= f.text_field :body,size:50%>
+                        <div class="field">
+                            <%= f.label :image %>
+                            <%= f.file_field :image %>
+                        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= f.submit "送信" ,class:"btn btn-primary"%><br>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <% @tweets.each do |t| %>
+            <div class="col-12 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <%= image_tag t.image_url,class:"card-img-top", size: "250x200" if t.image? %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= t.title %></h5>
+                        <p class="card-text"><%= t.body %></p>
+                        <%= link_to "詳細", tweet_path(t.id),class:"btn btn-primary" %>
+                        <%= link_to "編集", edit_tweet_path(t.id),class:"btn btn-primary" %>
+                        <%= link_to "削除", tweet_path(t.id), method: :delete ,class:"btn btn-primary" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
