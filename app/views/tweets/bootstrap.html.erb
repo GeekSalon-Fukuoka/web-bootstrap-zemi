@@ -15,8 +15,8 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                    <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+            <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+                <div class="modal-body">
                         <%= f.label :title %><br>
                         <%= f.text_field :title,size:50 %><br>
                         <%= f.label :投稿内容 %><br>
@@ -25,12 +25,16 @@
                             <%= f.label :image %>
                             <%= f.file_field :image %>
                         </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <%= f.submit "送信" ,class:"btn btn-primary"%><br>
-                <% end %>
-            </div>
+                        <%# <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <%= f.submit "送信" ,class:"btn btn-primary"%><br> %>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <%= f.submit "送信" ,class:"btn btn-primary"%><br>
+                </div>
+            <% end %>
+
         </div>
     </div>
 </div>

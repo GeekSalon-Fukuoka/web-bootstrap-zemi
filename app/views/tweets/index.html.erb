@@ -1,18 +1,28 @@
 <h1>GeekTwitter</h1>
 <h3>Tweet一覧</h3>
 
-<%= link_to "新規投稿へ", tweets_new_path ,class:"btn btn-success btn-lg btn-block" %><br><br>
-<%= link_to "新規投稿へ", tweets_new_path %><br><br>
+<%# <%= link_to "新規投稿へ", tweets_new_path ,class:"btn btn-success btn-lg btn-block" %><br><br> %>
+<%= link_to "新規投稿へ", tweets_new_path ,class:"btn btn-primary" %><br><br>
 
 <%= link_to "Components", example_path ,class:"btn btn-info"%>
 <%= link_to "GridSystem", grid_path ,class:"btn btn-info"%>
 <%= link_to "Bootstra ver", bootstrap_path ,class:"btn btn-info"%><br>
 
-<% @tweets.each do |t| %>
-    <%= t.body %><br>
-    <%= t.created_at %><br>
-    <%= link_to "詳細へ", tweet_path(t.id) %>
-    <%= link_to "編集する", edit_tweet_path(t.id) %>
-    <%= button_to "削除する", tweet_path(t.id), method: :delete %>
-<% end %>
-
+<div class="container">
+    <div class="row">
+        <% @tweets.each do |t| %>
+            <div class="col-12 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                <%= image_tag t.image_url, class:"card-img-top",size: "250x200" if t.image? %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= t.title %></h5>
+                        <p class="card-text"><%= t.body %></p>
+                        <%= link_to "詳細へ", tweet_path(t.id),class:"btn btn-primary" %>
+                        <%= link_to "編集する", edit_tweet_path(t.id),class:"btn btn-primary" %>
+                        <%= button_to "削除する", tweet_path(t.id),class:"btn btn-primary", method: :delete %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
