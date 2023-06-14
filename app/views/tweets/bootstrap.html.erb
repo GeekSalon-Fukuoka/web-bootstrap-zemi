@@ -1,43 +1,39 @@
 <h1>GeekTwitter(BootStrap ver)</h1>
-
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    投稿を作成する
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Create new tweet
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">ツイートを作成する</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
-                <div class="modal-body">
-                        <%= f.label :title %><br>
-                        <%= f.text_field :title,size:50 %><br>
-                        <%= f.label :投稿内容 %><br>
-                        <%= f.text_field :body,size:50%>
-                        <div class="field">
-                            <%= f.label :image %>
-                            <%= f.file_field :image %>
-                        </div>
-                        <%# <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <%= f.submit "送信" ,class:"btn btn-primary"%><br> %>
-
+            <div class="modal-body">
+                <%= f.label :title %><br>
+                <%= f.text_field :title,size:50 %><br>
+                <%= f.label :投稿内容 %><br>
+                <%= f.text_field :body,size:50%>
+                <div class="field">
+                    <%= f.label :image %>
+                    <%= f.file_field :image %>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <%= f.submit "送信" ,class:"btn btn-primary"%><br>
-                </div>
-            <% end %>
-
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                <%= f.submit "送信" ,class:"btn btn-primary"%>
+            </div>
+            </div>
         </div>
     </div>
-</div>
+<% end %>
+
 
 <div class="container">
     <div class="row">

@@ -1,0 +1,21 @@
+<h1>GeekTwitter(BootStrap ver)</h1>
+
+<%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title,size:50 %><br>
+    <%= f.label :投稿内容 %><br>
+    <%= f.text_field :body,size:50%><br>
+    <%= f.label :image %>
+    <%= f.file_field :image %><br>
+    <%= f.submit "送信" %>
+<% end %>
+
+
+<% @tweets.each do |t| %>
+    <%= image_tag t.image_url, size: "250x200" if t.image? %><br>
+    <%= t.title %><br>
+    <%= t.body %><br>
+    <%= link_to "詳細", tweet_path(t.id) %>
+    <%= link_to "編集", edit_tweet_path(t.id) %>
+    <%= link_to "削除", tweet_path(t.id), method: :delete  %><br>
+<% end %>
