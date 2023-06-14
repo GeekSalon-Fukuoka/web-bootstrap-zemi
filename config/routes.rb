@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'bootstrap' => 'tweets#bootstrap'
   get 'example' =>'tweets#example'
   get 'grid' => 'tweets#grid'
-  root 'tweets#index'
+  get 'top' => 'tweets#top'
+  root 'tweets#top'
 end

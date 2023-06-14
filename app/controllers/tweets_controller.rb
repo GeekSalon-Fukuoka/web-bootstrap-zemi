@@ -1,4 +1,7 @@
 class TweetsController < ApplicationController
+    def top
+
+    end
     def bootstrap
         @tweets=Tweet.all
         @tweet=Tweet.new
