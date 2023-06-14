@@ -1,4 +1,5 @@
-<h1>GeekTwitter(BootStrap ver)</h1>
+<h1>GeekTwitter</h1>
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Create new tweet
@@ -34,20 +35,19 @@
     </div>
 <% end %>
 
-
 <div class="container">
     <div class="row">
         <% @tweets.each do |t| %>
-            <div class="col-12 col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <%= image_tag t.image_url,class:"card-img-top", size: "250x200" if t.image? %>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= t.title %></h5>
-                        <p class="card-text"><%= t.body %></p>
-                        <%= link_to "詳細", tweet_path(t.id),class:"btn btn-primary" %>
-                        <%= link_to "編集", edit_tweet_path(t.id),class:"btn btn-primary" %>
-                        <%= link_to "削除", tweet_path(t.id), method: :delete ,class:"btn btn-primary" %>
-                    </div>
+            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" style="width: 18rem;">
+                <%= image_tag t.image_url,class:"bd-placeholder-img card-img-top", size: "250x200" if t.image? %><br>
+                <div class="card-body">
+                    <h5 class="card-title"><%= t.title %></h5>
+                    <p class="card-text"><%= t.body %></p>
+                    <%= link_to "詳細", tweet_path(t.id),class:"btn btn-primary" %>
+                    <%= link_to "編集", edit_tweet_path(t.id) ,class:"btn btn-primary"%>
+                    <%= link_to "削除", tweet_path(t.id), method: :delete ,class:"btn btn-danger" %><br>
+
+                    <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
                 </div>
             </div>
         <% end %>
